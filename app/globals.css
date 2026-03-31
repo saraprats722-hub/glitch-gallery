@@ -208,3 +208,19 @@
   .reveal-delay-3 { transition-delay: 0.24s !important; }
   .reveal-delay-4 { transition-delay: 0.32s !important; }
 }
+
+/* ── Carousel slide animations ── */
+@keyframes carouselSlideRight {
+  from { opacity: 0; transform: translateX(56px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes carouselSlideLeft {
+  from { opacity: 0; transform: translateX(-56px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.carousel-slide-right {
+  animation: carouselSlideRight 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+.carousel-slide-left {
+  animation: carouselSlideLeft 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}

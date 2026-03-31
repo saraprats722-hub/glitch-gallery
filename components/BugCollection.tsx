@@ -99,16 +99,15 @@ const VISIBLE = 3;
 
 export default function BugCollection() {
   const [startIndex, setStartIndex] = useState(0);
-  const [fading, setFading] = useState(false);
+  const [direction, setDirection] = useState<'right' | 'left'>('right');
+  const [animKey, setAnimKey] = useState(0);
   const maxStart = profiles.length - VISIBLE;
   const visible = profiles.slice(startIndex, startIndex + VISIBLE);
 
   const navigate = (newIndex: number) => {
-    setFading(true);
-    setTimeout(() => {
-      setStartIndex(newIndex);
-      setFading(false);
-    }, 180);
+    setDirection(newIndex > startIndex ? 'right' : 'left');
+    setStartIndex(newIndex);
+    setAnimKey(k => k + 1);
   };
 
   return (
@@ -128,7 +127,10 @@ export default function BugCollection() {
         </div>
 
         {/* Carousel track */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 transition-opacity duration-180 ${fading ? 'opacity-0' : 'opacity-100'}`}>
+        <div
+          key={animKey}
+          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ${direction === 'right' ? 'carousel-slide-right' : 'carousel-slide-left'}`}
+        >
           {visible.map((profile, i) => (
             <div key={profile.user} className="card opacity-100">
               {/* Profile header */}
