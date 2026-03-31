@@ -16,7 +16,7 @@ const legends = [
     category: 'Fechas',
     year: '1999',
     impact: 'Años almacenados con 2 dígitos causaron pánico global.',
-    consequence: '300B$ en correcciones. Meses de crisis IT mundial.',
+    consequence: '$300B en correcciones. Meses de crisis IT mundial.',
     badge: 'HISTÓRICO',
   },
   {
@@ -31,24 +31,25 @@ const legends = [
   },
 ];
 
-const badgeColors: Record<string, { bg: string; text: string }> = {
-  LEGENDARIO: { bg: '#D34D2A',   text: '#ffffff' },
-  HISTÓRICO:  { bg: '#6366F1',   text: '#ffffff' },
-  CRÍTICO:    { bg: '#EF4444',   text: '#ffffff' },
+const badgeStyles: Record<string, { color: string; bg: string }> = {
+  LEGENDARIO: { color: '#6366F1', bg: 'rgba(99,102,241,0.15)' },
+  HISTÓRICO:  { color: '#8B5CF6', bg: 'rgba(139,92,246,0.15)' },
+  CRÍTICO:    { color: '#EF4444', bg: 'rgba(239,68,68,0.15)' },
 };
 
 export default function HallOfFame() {
   return (
-    <section id="salon-fama" className="py-24 bg-[#121212] dot-pattern-dark">
+    <section id="salon-fama" className="py-24 bg-[#0F0F0F]">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Header */}
         <div className="mb-14 reveal">
-          <span className="label-mono text-[#D34D2A] block mb-3">// errores que cambiaron la historia</span>
-          <h2 className="heading-impact text-5xl md:text-6xl text-white">
+          <span className="label-mono text-[#6366F1] block mb-3">// errores que cambiaron la historia</span>
+          <h2 className="font-display font-bold text-white tracking-tight"
+              style={{ fontSize: 'clamp(2.2rem, 4vw, 3.5rem)' }}>
             Salón de<br />la Fama
           </h2>
-          <p className="font-body font-light text-[#666666] mt-4 max-w-xl text-base">
+          <p className="font-body text-[#6B7280] mt-4 max-w-xl text-base leading-relaxed">
             Los bugs que se convirtieron en lecciones para toda la industria del software.
           </p>
         </div>
@@ -56,45 +57,45 @@ export default function HallOfFame() {
         {/* Cards */}
         <div className="bento-grid">
           {legends.map((bug, i) => {
-            const badge = badgeColors[bug.badge];
+            const badge = badgeStyles[bug.badge] ?? badgeStyles.CRÍTICO;
             return (
               <div
                 key={bug.id}
                 className={`col-span-12 md:col-span-4 reveal reveal-delay-${i + 1} group cursor-pointer`}
               >
-                <div className="h-full bg-white/[0.04] border border-white/10 rounded-xl p-6 hover:bg-white/[0.07] hover:border-white/20 transition-all duration-200">
+                <div className="h-full bg-white/[0.04] border border-white/[0.08] rounded-2xl p-6 hover:bg-white/[0.07] hover:border-white/[0.15] transition-all duration-200">
 
                   {/* Top row */}
                   <div className="flex items-start justify-between mb-5">
-                    <div>
-                      <span className="badge-lang border-white/20 text-[#666666] bg-transparent">
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-xs text-[#6B7280] border border-white/[0.1] px-2 py-0.5 rounded-md">
                         {bug.category}
                       </span>
-                      <span className="ml-2 font-mono text-xs text-[#666666]">{bug.year}</span>
+                      <span className="font-mono text-xs text-[#4B5563]">{bug.year}</span>
                     </div>
                     <span
-                      className="font-mono text-[0.6rem] font-bold uppercase tracking-wide px-2.5 py-1 rounded"
-                      style={{ background: badge.bg, color: badge.text }}
+                      className="font-mono text-[0.58rem] font-bold uppercase tracking-wide px-2.5 py-1 rounded-lg"
+                      style={{ color: badge.color, background: badge.bg }}
                     >
                       {bug.badge}
                     </span>
                   </div>
 
                   {/* Code */}
-                  <div className="bg-black/40 border border-white/10 rounded-lg p-4 font-mono text-xs text-[#B7FF00] mb-5 leading-relaxed">
+                  <div className="bg-black/50 border border-white/[0.08] rounded-xl p-4 font-mono text-xs text-[#A3E635] mb-5 leading-relaxed overflow-x-auto">
                     {bug.code.split('\n').map((line, j) => (
-                      <div key={j} className={line.startsWith('//') ? 'text-[#666666] italic' : ''}>{line || '\u00A0'}</div>
+                      <div key={j} className={line.startsWith('//') ? 'text-[#4B5563] italic' : ''}>{line || '\u00A0'}</div>
                     ))}
                   </div>
 
-                  <h3 className="font-mono font-bold text-white text-base uppercase tracking-tight mb-2">
+                  <h3 className="font-display font-semibold text-white text-base tracking-tight mb-2">
                     {bug.label}
                   </h3>
-                  <p className="font-body text-sm text-[#666666] leading-relaxed mb-3">{bug.impact}</p>
+                  <p className="font-body text-sm text-[#6B7280] leading-relaxed mb-4">{bug.impact}</p>
 
-                  {/* Consequence callout */}
-                  <div className="border-l-2 border-[#D34D2A] pl-3 mt-4">
-                    <p className="font-mono text-xs text-[#999999] italic">{bug.consequence}</p>
+                  {/* Consequence */}
+                  <div className="border-l-2 border-[#6366F1] pl-3">
+                    <p className="font-mono text-xs text-[#4B5563]">{bug.consequence}</p>
                   </div>
 
                 </div>
@@ -102,20 +103,18 @@ export default function HallOfFame() {
             );
           })}
 
-          {/* Wide bottom cell */}
+          {/* CTA */}
           <div className="col-span-12 reveal">
-            <div className="bg-white/[0.03] border border-white/10 rounded-xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="bg-white/[0.03] border border-white/[0.08] rounded-2xl p-7 flex flex-col md:flex-row items-center justify-between gap-5">
               <div>
-                <p className="font-mono font-bold text-white text-lg uppercase tracking-tight mb-1">
+                <p className="font-display font-semibold text-white text-lg tracking-tight mb-1">
                   ¿Tienes un bug legendario?
                 </p>
-                <p className="font-body text-sm text-[#666666]">
+                <p className="font-body text-sm text-[#6B7280]">
                   Nomina un error que haya marcado un antes y un después en tu carrera o en la industria.
                 </p>
               </div>
-              <button className="btn-cta flex-shrink-0">
-                Nominar un bug
-              </button>
+              <button className="btn-cta flex-shrink-0">Nominar un bug</button>
             </div>
           </div>
         </div>

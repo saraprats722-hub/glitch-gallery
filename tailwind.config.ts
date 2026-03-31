@@ -9,36 +9,40 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        display: ['var(--font-jetbrains)', 'monospace'],
-        body:    ['var(--font-inter)',     'sans-serif'],
+        display: ['var(--font-space)', 'sans-serif'],
+        body:    ['var(--font-inter)',  'sans-serif'],
         mono:    ['var(--font-jetbrains)', 'monospace'],
       },
       colors: {
-        canvas:  '#F5F5F3',
-        carbon:  '#121212',
-        muted:   '#666666',
-        subtle:  '#999999',
-        coral:   '#D34D2A',
-        edge:    '#E5E5E5',
+        canvas:  '#FAFAF9',
+        carbon:  '#111111',
+        muted:   '#6B7280',
+        subtle:  '#9CA3AF',
+        indigo:  '#6366F1',
+        edge:    '#E4E4E7',
+        success: '#10B981',
+        warning: '#F59E0B',
+        danger:  '#EF4444',
+        // legacy aliases
+        coral:   '#6366F1',
       },
       animation: {
-        'fade-up':    'fadeUp 0.6s ease forwards',
-        'float-slow': 'float 8s ease-in-out infinite',
-        'float-mid':  'float 6s ease-in-out infinite',
+        'fade-up':    'fadeUp 0.55s ease forwards',
         'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
+        'marquee':    'marquee 35s linear infinite',
       },
       keyframes: {
         fadeUp: {
-          from: { opacity: '0', transform: 'translateY(24px)' },
+          from: { opacity: '0', transform: 'translateY(20px)' },
           to:   { opacity: '1', transform: 'translateY(0)' },
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%':      { transform: 'translateY(-12px)' },
         },
         pulseSoft: {
           '0%, 100%': { opacity: '0.4' },
           '50%':      { opacity: '0.8' },
+        },
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to:   { transform: 'translateX(-50%)' },
         },
       },
     },

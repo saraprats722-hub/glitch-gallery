@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, JetBrains_Mono } from 'next/font/google';
+import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import { AuthProvider } from '@/components/AuthProvider';
 import './globals.css';
 
@@ -18,6 +18,13 @@ const jetbrainsMono = JetBrains_Mono({
   display: 'swap',
 });
 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-space',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   title: 'Galería de Glitches — Donde el código roto se convierte en sabiduría colectiva',
   description:
@@ -31,7 +38,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="es" className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable}`}>
       <body><AuthProvider>{children}</AuthProvider></body>
     </html>
   );

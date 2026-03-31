@@ -31,7 +31,7 @@ function Field({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full bg-white border border-[#E5E5E5] rounded-xl px-4 py-3 text-[#121212] font-body text-sm focus:outline-none focus:border-[#D34D2A] transition-colors placeholder:text-[#BBBBBB]"
+        className="w-full bg-white border border-[#E4E4E7] rounded-xl px-4 py-3 text-[#111] font-body text-sm focus:outline-none focus:border-[#6366F1] transition-colors placeholder:text-[#C4C4CC]"
       />
     </div>
   );
@@ -95,16 +95,16 @@ export default function AuthModal({ onClose }: Props) {
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm"
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
-      <div className="bg-[#F5F5F3] border border-[#E5E5E5] rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden">
+      <div className="bg-[#FAFAF9] border border-[#E4E4E7] rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden">
 
         {/* Header */}
-        <div className="flex items-center justify-between px-7 pt-7 pb-5 border-b border-[#E5E5E5]">
-          <span className="font-mono font-bold text-[#121212] text-base tracking-tight">
-            galeria<span className="text-[#D34D2A]">.</span>glitches
+        <div className="flex items-center justify-between px-7 pt-7 pb-5 border-b border-[#E4E4E7]">
+          <span className="font-mono font-bold text-[#111] text-sm tracking-tight">
+            galeria<span className="text-[#6366F1]">.</span>glitches
           </span>
           <button
             onClick={onClose}
-            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#E5E5E5] transition-colors text-[#666666] hover:text-[#121212]"
+            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#F4F4F5] transition-colors text-[#6B7280] hover:text-[#111]"
             aria-label="Cerrar"
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -115,7 +115,7 @@ export default function AuthModal({ onClose }: Props) {
 
         <div className="px-7 py-6 space-y-5">
           {/* Tabs */}
-          <div className="flex gap-1 bg-white border border-[#E5E5E5] rounded-xl p-1">
+          <div className="flex gap-1 bg-white border border-[#E4E4E7] rounded-xl p-1">
             {(['login', 'register'] as const).map((t) => (
               <button
                 key={t}
@@ -135,7 +135,7 @@ export default function AuthModal({ onClose }: Props) {
           <button
             onClick={handleGoogle}
             disabled={googleLoading}
-            className="w-full flex items-center justify-center gap-3 bg-white border border-[#E5E5E5] rounded-full px-4 py-3 font-body text-sm font-medium text-[#121212] hover:border-[#121212] disabled:opacity-50 transition-all duration-200"
+            className="w-full flex items-center justify-center gap-3 bg-white border border-[#E4E4E7] rounded-full px-4 py-3 font-body text-sm font-medium text-[#111] hover:border-[#111] disabled:opacity-50 transition-all duration-200"
           >
             <GoogleIcon />
             {googleLoading ? 'Redirigiendo…' : 'Continuar con Google'}
@@ -143,9 +143,9 @@ export default function AuthModal({ onClose }: Props) {
 
           {/* Divider */}
           <div className="flex items-center gap-3">
-            <div className="flex-1 h-px bg-[#E5E5E5]" />
-            <span className="label-mono text-[#BBBBBB]">o</span>
-            <div className="flex-1 h-px bg-[#E5E5E5]" />
+            <div className="flex-1 h-px bg-[#E4E4E7]" />
+            <span className="label-mono text-[#C4C4CC]">o</span>
+            <div className="flex-1 h-px bg-[#E4E4E7]" />
           </div>
 
           {/* Form */}
@@ -157,7 +157,7 @@ export default function AuthModal({ onClose }: Props) {
             <Field label="Contraseña" type="password" value={password} onChange={setPassword} placeholder="Mínimo 6 caracteres" />
 
             {error && (
-              <p className="text-xs font-body text-[#D34D2A] bg-[#D34D2A]/8 border border-[#D34D2A]/20 rounded-lg px-3 py-2">
+              <p className="text-xs font-body text-[#EF4444] bg-[#EF4444]/8 border border-[#EF4444]/20 rounded-lg px-3 py-2">
                 {error}
               </p>
             )}
