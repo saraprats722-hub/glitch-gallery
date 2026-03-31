@@ -42,19 +42,6 @@ export default function Hero() {
               <button className="btn-outline">Enviar un Bug</button>
             </div>
 
-            {/* Stats */}
-            <div className="reveal reveal-delay-4 flex flex-wrap gap-8 pt-6 border-t border-[#E4E4E7]">
-              {[
-                { value: '34k+', label: 'bugs documentados' },
-                { value: '8.2k', label: 'desarrolladores' },
-                { value: '94%',  label: 'resueltos' },
-              ].map((s) => (
-                <div key={s.label}>
-                  <p className="font-display font-bold text-2xl text-[#111]">{s.value}</p>
-                  <p className="font-body text-xs text-[#9CA3AF] mt-0.5">{s.label}</p>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* Right — language grid */}

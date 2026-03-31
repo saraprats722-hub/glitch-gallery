@@ -175,17 +175,21 @@ export default function CommunityFixes() {
                   {/* Toggle button */}
                   <button
                     onClick={() => toggle(bug.id)}
-                    className="flex items-center gap-1.5 font-mono text-xs text-[#6366F1] hover:text-[#4F46E5] hover:underline underline-offset-2 decoration-[#6366F1]/50 transition-all cursor-pointer pb-1 group"
+                    className={`inline-flex items-center gap-2 font-mono text-xs px-3 py-1.5 rounded-lg border transition-all duration-150 cursor-pointer ${
+                      isOpen
+                        ? 'bg-[#6366F1] text-white border-[#6366F1]'
+                        : 'bg-[#6366F1]/8 text-[#6366F1] border-[#6366F1]/25 hover:bg-[#6366F1]/15 hover:border-[#6366F1]/50'
+                    }`}
                     aria-expanded={isOpen}
                   >
+                    {isOpen ? 'Ocultar soluciones' : `Ver ${bug.solutions.length} soluciones`}
                     <svg
-                      width="10" height="10" viewBox="0 0 10 10" fill="none"
-                      className={`transition-transform duration-200 ${isOpen ? 'rotate-90' : ''}`}
+                      width="12" height="12" viewBox="0 0 12 12" fill="none"
+                      className={`transition-transform duration-200 flex-shrink-0 ${isOpen ? 'rotate-180' : ''}`}
                       aria-hidden="true"
                     >
-                      <path d="M1 5h8M5 1l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
-                    {isOpen ? 'Ocultar' : 'Ver'} {bug.solutions.length} {bug.solutions.length === 1 ? 'solución' : 'soluciones'}
                   </button>
                 </div>
 

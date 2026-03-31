@@ -99,8 +99,17 @@ const VISIBLE = 3;
 
 export default function BugCollection() {
   const [startIndex, setStartIndex] = useState(0);
-  const maxStart = profiles.length - VISIBLE; // 3 for 6 profiles
+  const [fading, setFading] = useState(false);
+  const maxStart = profiles.length - VISIBLE;
   const visible = profiles.slice(startIndex, startIndex + VISIBLE);
+
+  const navigate = (newIndex: number) => {
+    setFading(true);
+    setTimeout(() => {
+      setStartIndex(newIndex);
+      setFading(false);
+    }, 180);
+  };
 
   return (
     <section className="py-24 bg-white">
@@ -119,7 +128,7 @@ export default function BugCollection() {
         </div>
 
         {/* Carousel track */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 transition-opacity duration-180 ${fading ? 'opacity-0' : 'opacity-100'}`}>
           {visible.map((profile, i) => (
             <div key={profile.user} className="card opacity-100">
               {/* Profile header */}
@@ -186,7 +195,7 @@ export default function BugCollection() {
         {/* Carousel navigation */}
         <div className="flex items-center justify-center gap-4 mt-8">
           <button
-            onClick={() => setStartIndex((i) => Math.max(0, i - 1))}
+            onClick={() => navigate(Math.max(0, startIndex - 1))}
             disabled={startIndex === 0}
             aria-label="Anterior"
             className="w-8 h-8 rounded-full border border-[#E4E4E7] flex items-center justify-center text-[#6B7280] hover:border-[#6366F1] hover:text-[#6366F1] transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
@@ -201,7 +210,7 @@ export default function BugCollection() {
             {Array.from({ length: maxStart + 1 }).map((_, idx) => (
               <button
                 key={idx}
-                onClick={() => setStartIndex(idx)}
+                onClick={() => navigate(idx)}
                 aria-label={`Posición ${idx + 1}`}
                 className={`rounded-full transition-all duration-200 cursor-pointer ${
                   idx === startIndex
@@ -213,7 +222,7 @@ export default function BugCollection() {
           </div>
 
           <button
-            onClick={() => setStartIndex((i) => Math.min(maxStart, i + 1))}
+            onClick={() => navigate(Math.min(maxStart, startIndex + 1))}
             disabled={startIndex === maxStart}
             aria-label="Siguiente"
             className="w-8 h-8 rounded-full border border-[#E4E4E7] flex items-center justify-center text-[#6B7280] hover:border-[#6366F1] hover:text-[#6366F1] transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
