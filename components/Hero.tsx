@@ -8,8 +8,8 @@ const langCards = [
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center bg-[#FAFAF9] overflow-hidden pt-20">
-      <div className="max-w-7xl mx-auto px-6 w-full py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+      <div className="max-w-7xl mx-auto px-6 w-full py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
           {/* Left — text */}
           <div>

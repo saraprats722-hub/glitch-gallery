@@ -118,18 +118,12 @@ export default async function BugFeed() {
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 reveal">
-          <div>
-            <span className="label-mono block mb-3">// feed en tiempo real</span>
-            <h2 className="font-display font-bold text-[#111] tracking-tight"
-                style={{ fontSize: 'clamp(2.2rem, 4vw, 3.5rem)' }}>
-              Feed de Bugs
-            </h2>
-          </div>
-          <div className="flex items-center gap-3">
-            <button className="btn-outline text-sm px-5 py-2">Ver todos</button>
-            <button className="btn-cta text-sm px-5 py-2">Enviar bug</button>
-          </div>
+        <div className="mb-10 reveal">
+          <span className="label-mono block mb-3">// feed en tiempo real</span>
+          <h2 className="font-display font-bold text-[#111] tracking-tight"
+              style={{ fontSize: 'clamp(2.2rem, 4vw, 3.5rem)' }}>
+            Feed de Bugs
+          </h2>
         </div>
 
         {/* Grid */}
@@ -200,6 +194,11 @@ export default async function BugFeed() {
               </article>
             );
           })}
+        </div>
+
+        {/* Ver más */}
+        <div className="flex justify-center mt-10">
+          <button className="btn-outline text-sm px-6 py-2">Ver más</button>
         </div>
 
       </div>

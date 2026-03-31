@@ -43,13 +43,13 @@ export default function HallOfFame() {
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Header */}
-        <div className="mb-14 reveal">
+        <div className="mb-8 reveal">
           <span className="label-mono text-[#6366F1] block mb-3">// errores que cambiaron la historia</span>
           <h2 className="font-display font-bold text-white tracking-tight"
               style={{ fontSize: 'clamp(2.2rem, 4vw, 3.5rem)' }}>
-            Salón de<br />la Fama
+            Salón de la Fama
           </h2>
-          <p className="font-body text-[#6B7280] mt-4 max-w-xl text-base leading-relaxed">
+          <p className="font-body text-[#6B7280] mt-2 max-w-xl text-base leading-normal">
             Los bugs que se convirtieron en lecciones para toda la industria del software.
           </p>
         </div>

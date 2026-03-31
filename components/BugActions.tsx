@@ -49,9 +49,8 @@ export default function BugActions({ initialUpvotes = 0, solutions = 0 }: Props)
               : 'text-[#6B7280] border-[#E4E4E7] hover:border-[#F59E0B] hover:text-[#F59E0B]'
           }`}
         >
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-            <path d="M1 6a5 5 0 1 0 10 0" strokeLinecap="round"/>
-            <path d="M11 1v5H6" strokeLinecap="round" strokeLinejoin="round"/>
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="currentColor" aria-hidden="true">
+            <polygon points="2,1 9,5.5 2,10"/>
           </svg>
           Reproducido
         </button>

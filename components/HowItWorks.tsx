@@ -37,7 +37,7 @@ export default function HowItWorks() {
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Header */}
-        <div className="mb-14 reveal">
+        <div className="mb-10 reveal">
           <span className="label-mono block mb-3">// proceso</span>
           <h2 className="font-display font-bold text-[#111] tracking-tight"
               style={{ fontSize: 'clamp(2.2rem, 4vw, 3.5rem)' }}>
@@ -81,7 +81,7 @@ export default function HowItWorks() {
             </div>
             <div className="flex gap-3 flex-shrink-0">
               <button className="btn-cta">Enviar mi primer bug</button>
-              <button className="btn-outline">Ver ejemplos</button>
+              <a href="#feed-bugs" className="btn-outline">Ver ejemplos</a>
             </div>
           </div>
         </div>

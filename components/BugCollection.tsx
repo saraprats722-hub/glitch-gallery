@@ -1,3 +1,6 @@
+'use client';
+import { useState } from 'react';
+
 const profiles = [
   {
     user: 'devCarlos',
@@ -41,6 +44,48 @@ const profiles = [
       { title: 'Evento de click doble en touch', lang: 'JS', severity: 'LOW' },
     ],
   },
+  {
+    user: 'sara_mobile',
+    initial: 'S',
+    color: '#F59E0B',
+    role: 'Mobile Developer',
+    bugs: 22,
+    solved: 18,
+    collection: [
+      { title: 'Crash al rotar pantalla en Android', lang: 'KT', severity: 'HIGH' },
+      { title: 'Memory leak en listeners no eliminados', lang: 'SW', severity: 'CRITICAL' },
+      { title: 'Teclado tapa el input en iOS 17', lang: 'SW', severity: 'MEDIUM' },
+      { title: 'Dark mode ignora colores personalizados', lang: 'CSS', severity: 'LOW' },
+    ],
+  },
+  {
+    user: 'luisfdev',
+    initial: 'L',
+    color: '#EF4444',
+    role: 'DevOps Engineer',
+    bugs: 14,
+    solved: 14,
+    collection: [
+      { title: 'Docker build falla por .dockerignore mal', lang: 'SH', severity: 'MEDIUM' },
+      { title: 'CI pasa pero prod falla por env vars', lang: 'SH', severity: 'HIGH' },
+      { title: 'Nginx 502 intermitente sin logs claros', lang: 'SH', severity: 'CRITICAL' },
+      { title: 'Cron job silencia errores con > /dev/null', lang: 'SH', severity: 'HIGH' },
+    ],
+  },
+  {
+    user: 'teo_design',
+    initial: 'T',
+    color: '#EC4899',
+    role: 'Design Engineer',
+    bugs: 19,
+    solved: 16,
+    collection: [
+      { title: 'Fuente no carga en Firefox por CORS', lang: 'CSS', severity: 'MEDIUM' },
+      { title: 'SVG roto en Safari con clip-path', lang: 'CSS', severity: 'HIGH' },
+      { title: 'Animación GSAP salta en primer frame', lang: 'JS', severity: 'LOW' },
+      { title: 'Scroll suave ignorado en Chrome móvil', lang: 'CSS', severity: 'LOW' },
+    ],
+  },
 ];
 
 const severityDot: Record<string, string> = {
@@ -50,33 +95,36 @@ const severityDot: Record<string, string> = {
   CRITICAL: '#DC2626',
 };
 
+const PER_PAGE = 3;
+
 export default function BugCollection() {
+  const [page, setPage] = useState(0);
+  const totalPages = Math.ceil(profiles.length / PER_PAGE);
+  const visible = profiles.slice(page * PER_PAGE, (page + 1) * PER_PAGE);
+
   return (
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Header */}
-        <div className="mb-14 reveal">
+        <div className="mb-10 reveal">
           <span className="label-mono block mb-3">// colecciones personales</span>
           <h2 className="font-display font-bold text-[#111] tracking-tight"
               style={{ fontSize: 'clamp(2.2rem, 4vw, 3.5rem)' }}>
             Mi Colección
           </h2>
-          <p className="font-body text-[#6B7280] mt-4 text-base max-w-xl leading-relaxed">
+          <p className="font-body text-[#6B7280] mt-3 text-base max-w-xl leading-normal">
             Cada desarrollador lleva una colección de errores propios. Aquí los documentan para que nadie más los repita.
           </p>
         </div>
 
-        {/* Profile grid */}
-        <div className="bento-grid">
-          {profiles.map((profile, i) => (
-            <div
-              key={profile.user}
-              className={`col-span-12 md:col-span-4 card reveal reveal-delay-${i + 1}`}
-            >
+        {/* Carousel track */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {visible.map((profile, i) => (
+            <div key={profile.user} className={`card reveal reveal-delay-${i + 1}`}>
               {/* Profile header */}
               <div className="p-6 border-b border-[#E4E4E7]">
-                <div className="flex items-center gap-3 mb-5">
+                <div className="flex items-center gap-3 mb-4">
                   <div
                     className="w-10 h-10 rounded-full flex items-center justify-center font-display font-bold text-white text-base"
                     style={{ background: profile.color }}
@@ -90,7 +138,6 @@ export default function BugCollection() {
                   </div>
                 </div>
 
-                {/* Stats */}
                 <div className="flex gap-6">
                   <div>
                     <p className="font-display font-bold text-xl text-[#111]">{profile.bugs}</p>
@@ -105,8 +152,8 @@ export default function BugCollection() {
 
               {/* Bug list */}
               <div className="p-5">
-                <p className="label-mono mb-4">Colección</p>
-                <ul className="flex flex-col gap-2.5">
+                <p className="label-mono mb-3">Colección</p>
+                <ul className="flex flex-col gap-2">
                   {profile.collection.map((bug, j) => (
                     <li key={j} className="flex items-center gap-2.5 group cursor-pointer">
                       <span
@@ -123,7 +170,7 @@ export default function BugCollection() {
                 </ul>
 
                 <button
-                  className="mt-5 font-mono text-xs flex items-center gap-1.5 transition-all duration-150 hover:gap-2.5 cursor-pointer"
+                  className="mt-4 font-mono text-xs flex items-center gap-1.5 transition-all duration-150 hover:gap-2.5 cursor-pointer"
                   style={{ color: profile.color }}
                 >
                   Ver colección completa
@@ -134,6 +181,52 @@ export default function BugCollection() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Carousel navigation */}
+        <div className="flex items-center justify-center gap-4 mt-8">
+          <button
+            onClick={() => setPage((p) => Math.max(0, p - 1))}
+            disabled={page === 0}
+            aria-label="Página anterior"
+            className="w-8 h-8 rounded-full border border-[#E4E4E7] flex items-center justify-center text-[#6B7280] hover:border-[#6366F1] hover:text-[#6366F1] transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+          >
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M8 2L4 6l4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+
+          {/* Dots */}
+          <div className="flex items-center gap-1.5">
+            {Array.from({ length: totalPages }).map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setPage(idx)}
+                aria-label={`Página ${idx + 1}`}
+                className={`rounded-full transition-all duration-200 cursor-pointer ${
+                  idx === page
+                    ? 'w-5 h-1.5 bg-[#6366F1]'
+                    : 'w-1.5 h-1.5 bg-[#E4E4E7] hover:bg-[#6366F1]/40'
+                }`}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
+            disabled={page === totalPages - 1}
+            aria-label="Página siguiente"
+            className="w-8 h-8 rounded-full border border-[#E4E4E7] flex items-center justify-center text-[#6B7280] hover:border-[#6366F1] hover:text-[#6366F1] transition-all disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+          >
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M4 2l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        {/* Ver más */}
+        <div className="flex justify-center mt-6">
+          <button className="btn-outline text-sm px-6 py-2">Ver más</button>
         </div>
 
       </div>

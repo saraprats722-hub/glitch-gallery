@@ -12,8 +12,7 @@ export default function FinalCTA() {
           style={{ fontSize: 'clamp(3rem, 7vw, 6rem)', lineHeight: 1.05 }}
         >
           Comparte<br />
-          <span className="text-[#6366F1]">tu peor</span><br />
-          bug.
+          <span className="text-[#6366F1]">tu peor bug.</span>
         </h2>
 
         <p className="reveal reveal-delay-2 font-body text-[#6B7280] text-lg leading-relaxed mb-10 max-w-xl mx-auto">

@@ -60,7 +60,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop auth */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-5">
             {!loading && (
               user ? (
                 <>
@@ -84,7 +84,7 @@ export default function Navbar() {
                   </button>
                   <button
                     onClick={() => setAuthOpen(true)}
-                    className="btn-cta text-sm px-5 py-2"
+                    className="btn-cta text-sm px-4 py-1.5"
                   >
                     Enviar Bug
                   </button>
