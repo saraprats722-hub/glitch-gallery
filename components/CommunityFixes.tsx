@@ -175,7 +175,7 @@ export default function CommunityFixes() {
                   {/* Toggle button */}
                   <button
                     onClick={() => toggle(bug.id)}
-                    className="flex items-center gap-1.5 font-mono text-xs text-[#6366F1] hover:text-[#4F46E5] transition-colors cursor-pointer pb-1"
+                    className="flex items-center gap-1.5 font-mono text-xs text-[#6366F1] hover:text-[#4F46E5] hover:underline underline-offset-2 decoration-[#6366F1]/50 transition-all cursor-pointer pb-1 group"
                     aria-expanded={isOpen}
                   >
                     <svg

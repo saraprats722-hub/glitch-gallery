@@ -9,10 +9,12 @@ interface Props {
 export default function BugActions({ initialUpvotes = 0, solutions = 0 }: Props) {
   const [voted, setVoted] = useState<'util' | 'reproducido' | 'solucionado' | null>(null);
   const [upvotes, setUpvotes] = useState(initialUpvotes);
+  const [reproduced, setReproduced] = useState(Math.floor(initialUpvotes * 0.6));
 
   const vote = (type: 'util' | 'reproducido' | 'solucionado') => {
     if (voted === type) return;
     if (type === 'util') setUpvotes((v) => v + 1);
+    if (type === 'reproducido') setReproduced((v) => v + 1);
     setVoted(type);
   };
 
@@ -52,7 +54,7 @@ export default function BugActions({ initialUpvotes = 0, solutions = 0 }: Props)
           <svg width="11" height="11" viewBox="0 0 11 11" fill="currentColor" aria-hidden="true">
             <polygon points="2,1 9,5.5 2,10"/>
           </svg>
-          Reproducido
+          Reproducido{reproduced > 0 && <span className="ml-0.5 opacity-70">· {reproduced}</span>}
         </button>
 
         {/* Solucionado */}
@@ -73,9 +75,9 @@ export default function BugActions({ initialUpvotes = 0, solutions = 0 }: Props)
       </div>
 
       {solutions > 0 && (
-        <button className="font-mono text-xs text-[#6366F1] hover:text-[#4F46E5] transition-colors flex items-center gap-1 cursor-pointer">
+        <button className="font-mono text-xs text-[#6366F1] hover:text-[#4F46E5] transition-all flex items-center gap-1 hover:gap-2 cursor-pointer group">
           {solutions} {solutions === 1 ? 'solución' : 'soluciones'}
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true" className="transition-transform duration-150 group-hover:translate-x-0.5">
             <path d="M1 5h8M5 1l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </button>

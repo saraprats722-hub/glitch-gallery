@@ -24,52 +24,57 @@ export default function Footer() {
 
       <div className="max-w-7xl mx-auto px-6 py-16">
 
-        {/* Brand + Newsletter */}
-        <div className="max-w-sm">
-          <p className="font-mono font-bold text-white text-sm tracking-tight mb-3">
-            galeria<span className="text-[#6366F1]">.</span>glitches
-          </p>
-          <p className="font-body text-[#6B7280] text-sm leading-relaxed mb-6">
-            La plataforma donde los fallos de programación se convierten en conocimiento colectivo.
-          </p>
+        {/* Main row: Brand+Newsletter + Link columns */}
+        <div className="flex flex-col lg:flex-row lg:items-start gap-12 lg:gap-0">
 
-          {/* Newsletter */}
-          <div className="flex gap-2">
-            <input
-              type="email"
-              placeholder="tu@correo.dev"
-              className="flex-1 bg-white/[0.05] border border-white/[0.08] rounded-full px-4 py-2.5 text-white text-sm font-body placeholder:text-[#4B5563] focus:outline-none focus:border-[#6366F1]/50 transition-colors min-w-0"
-            />
-            <button className="btn-cta text-sm px-4 py-2.5 flex-shrink-0">
-              Suscribirse
-            </button>
-          </div>
-          <p className="font-body text-xs text-[#4B5563] mt-2">
-            Resumen semanal de los bugs más votados.
-          </p>
-        </div>
+          {/* Brand + Newsletter */}
+          <div className="max-w-xs lg:mr-16 flex-shrink-0">
+            <p className="font-mono font-bold text-white text-sm tracking-tight mb-3">
+              galeria<span className="text-[#6366F1]">.</span>glitches
+            </p>
+            <p className="font-body text-[#6B7280] text-sm leading-relaxed mb-6">
+              La plataforma donde los fallos de programación se convierten en conocimiento colectivo.
+            </p>
 
-        {/* Link columns — separated by border */}
-        <div className="mt-12 pt-10 border-t border-white/[0.06] flex gap-8 lg:gap-12">
-          {Object.entries(footerLinks).map(([section, links], idx, arr) => (
-            <div key={section} className={idx === arr.length - 1 ? 'ml-auto' : ''}>
-              <p className="font-mono text-xs font-bold uppercase tracking-widest text-[#4B5563] mb-4">
-                {section}
-              </p>
-              <ul className="flex flex-col gap-2.5">
-                {links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="font-body text-sm text-[#6B7280] hover:text-white transition-colors duration-150"
-                    >
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+            {/* Newsletter */}
+            <div className="flex gap-2">
+              <input
+                type="email"
+                placeholder="tu@correo.dev"
+                className="flex-1 bg-white/[0.05] border border-white/[0.08] rounded-full px-4 py-2.5 text-white text-sm font-body placeholder:text-[#4B5563] focus:outline-none focus:border-[#6366F1]/50 transition-colors min-w-0"
+              />
+              <button className="btn-cta text-sm px-4 py-2.5 flex-shrink-0">
+                Suscribirse
+              </button>
             </div>
-          ))}
+            <p className="font-body text-xs text-[#4B5563] mt-2">
+              Resumen semanal de los bugs más votados.
+            </p>
+          </div>
+
+          {/* Link columns */}
+          <div className="flex flex-1 gap-10 lg:gap-12">
+            {Object.entries(footerLinks).map(([section, links], idx, arr) => (
+              <div key={section} className={idx === arr.length - 1 ? 'ml-auto' : ''}>
+                <p className="font-mono text-xs font-bold uppercase tracking-widest text-[#4B5563] mb-4">
+                  {section}
+                </p>
+                <ul className="flex flex-col gap-2.5">
+                  {links.map((link) => (
+                    <li key={link}>
+                      <a
+                        href="#"
+                        className="font-body text-sm text-[#6B7280] hover:text-white transition-colors duration-150"
+                      >
+                        {link}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
         </div>
 
         {/* Bottom bar */}

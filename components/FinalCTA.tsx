@@ -22,13 +22,13 @@ export default function FinalCTA() {
 
         <div className="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
           <button className="btn-cta px-10 py-4 text-base">
-            Enviar un Glitch
+            Enviar Bug
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M2 8h12M8 2l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
           <button className="btn-outline px-10 py-4 text-base">
-            Explorar el Archivo
+            Explorar Bugs
           </button>
         </div>
 
