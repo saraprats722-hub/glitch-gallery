@@ -92,11 +92,22 @@ export default async function BugFeed() {
   let bugs: BugCard[] = staticBugs;
 
   if (isSupabaseConfigured) {
+    type BugRow = {
+      id: string;
+      title: string;
+      description: string;
+      language: string;
+      severity: string;
+      upvotes: number;
+      code_snippet: string | null;
+      error_output: string | null;
+    };
+
     const { data, error } = await supabase
       .from('bugs')
       .select('id, title, description, language, severity, upvotes, code_snippet, error_output')
       .order('upvotes', { ascending: false })
-      .limit(4);
+      .limit(4) as { data: BugRow[] | null; error: unknown };
 
     if (!error && data && data.length > 0) {
       bugs = data.map((b) => ({
