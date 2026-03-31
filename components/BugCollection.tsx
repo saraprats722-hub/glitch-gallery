@@ -121,7 +121,7 @@ export default function BugCollection() {
         {/* Carousel track */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {visible.map((profile, i) => (
-            <div key={profile.user} className={`card reveal reveal-delay-${i + 1}`}>
+            <div key={profile.user} className="card opacity-100">
               {/* Profile header */}
               <div className="p-6 border-b border-[#E4E4E7]">
                 <div className="flex items-center gap-3 mb-4">
